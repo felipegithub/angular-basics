@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { RetanguloComponent } from '../formas-geometricas/componentes/retangulo/retangulo.component';
-import { FormasGeometricasModule } from '../formas-geometricas/formas-geometricas.module';
+import { ElipseModule } from '../elipse/elipse.module';
+import { RetanguloModule } from '../retangulo/retangulo.module';
 import { AppComponent } from './componentes/app.component';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { AppComponent } from './componentes/app.component';
   ],
   imports: [
     BrowserModule,
-    FormasGeometricasModule
+    RetanguloModule,
+    ElipseModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
