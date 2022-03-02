@@ -1,0 +1,137 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "formas-geometricas-legais": {
+      "projectType": "library",
+      "root": "projects/formas-geometricas-legais",
+      "sourceRoot": "projects/formas-geometricas-legais/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/formas-geometricas-legais/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/formas-geometricas-legais/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/formas-geometricas-legais/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/formas-geometricas-legais/src/test.ts",
+            "tsConfig": "projects/formas-geometricas-legais/tsconfig.spec.json",
+            "karmaConfig": "projects/formas-geometricas-legais/karma.conf.js"
+          }
+        }
+      }
+    },
+    "dummy-test": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/dummy-test",
+      "sourceRoot": "projects/dummy-test/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/dummy-test",
+            "index": "projects/dummy-test/src/index.html",
+            "main": "projects/dummy-test/src/main.ts",
+            "polyfills": "projects/dummy-test/src/polyfills.ts",
+            "tsConfig": "projects/dummy-test/tsconfig.app.json",
+            "assets": [
+              "projects/dummy-test/src/favicon.ico",
+              "projects/dummy-test/src/assets"
+            ],
+            "styles": [
+              "projects/dummy-test/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/dummy-test/src/environments/environment.ts",
+                  "with": "projects/dummy-test/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "dummy-test:build:production"
+            },
+            "development": {
+              "browserTarget": "dummy-test:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dummy-test:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dummy-test/src/test.ts",
+            "polyfills": "projects/dummy-test/src/polyfills.ts",
+            "tsConfig": "projects/dummy-test/tsconfig.spec.json",
+            "karmaConfig": "projects/dummy-test/karma.conf.js",
+            "assets": [
+              "projects/dummy-test/src/favicon.ico",
+              "projects/dummy-test/src/assets"
+            ],
+            "styles": [
+              "projects/dummy-test/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "formas-geometricas-legais"
+}
